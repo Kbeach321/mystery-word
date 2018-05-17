@@ -8,24 +8,32 @@ import random
 with open("/usr/share/dict/words") as wholedoc:
     wordlist = wholedoc.read().lower().splitlines()
     randomword = random.choice(wordlist)
-print(randomword)
+    blankspace = "_ " * len(randomword)
+print(blankspace) # CHANGE THIS TO BE _ _ _ _ #
+
+def incorrectguess(guessinput):
+    return f"{letter} is incorrect"
+
+def correctguess(guessinput):
+    return f"{letter} is correct"
+
+def letterguesser(letter):
+    if guessinput in randomword:
+        return True
+    else:
+        return False
 
 def wholegame(guesscounter, answer):
-    if correctguess():
-        statement = "That letter is correct "
+    letter = guessinput
+    if letterguesser(letter):
+        statement = correctguess(guessinput)
         guesscounter += 0
     else:
-        statement = "That letter is incorrect "
+        statement = incorrectguess(guessinput)
         guesscounter -= 1
     return statement , guesscounter
 
 #print(f"Your word contains this many letters" randomword)
-
-#def correctguess(letter):
-#    return f"{letter} is correct"
-
-#def incorrectguess(letter):
-#    return f"{letter} is incorrect"
 
 ################################################################
 
@@ -33,6 +41,7 @@ guesscounter = 8
 
 while guesscounter > 0:
     guessinput = input("Guess a letter! ")
+    answer = "YOU WIN!"
     output = f"You have {guesscounter} guesses remaining"
-
+    guessedletter = wholegame(guesscounter, answer)
     print(output)

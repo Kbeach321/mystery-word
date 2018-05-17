@@ -1,21 +1,18 @@
 # Mystery-word application #
-# OBJECTIVES:
-# 2. Number of letters # 3. 1 letter per round "Lives"
-# 4. Display progress on word # 5. 8 guesses [guess count displayed]
+# OBJECTIVES: # 3. 1 letter per round "Lives" # 4. Display progress on word
 
 import random
 
-with open("/usr/share/dict/words") as wholedoc:
-    wordlist = wholedoc.read().lower().splitlines()
-    randomword = random.choice(wordlist)
-    blankspace = "_ " * len(randomword)
-print(blankspace) # CHANGE THIS TO BE _ _ _ _ #
+def wholegame(guesscounter, statement):
+    letter = guessinput
+    if letterguesser(letter) is True:
+        statement = correctguess(guessinput)
+        guesscounter += 0
+    else:
+        statement = incorrectguess(guessinput)
+        guesscounter -= 1
+    return guesscounter, statement
 
-def incorrectguess(guessinput):
-    return f"{letter} is incorrect"
-
-def correctguess(guessinput):
-    return f"{letter} is correct"
 
 def letterguesser(letter):
     if guessinput in randomword:
@@ -23,25 +20,30 @@ def letterguesser(letter):
     else:
         return False
 
-def wholegame(guesscounter, answer):
-    letter = guessinput
-    if letterguesser(letter):
-        statement = correctguess(guessinput)
-        guesscounter += 0
-    else:
-        statement = incorrectguess(guessinput)
-        guesscounter -= 1
-    return statement , guesscounter
+def incorrectguess(guessinput):
+    pass
+    #
 
-#print(f"Your word contains this many letters" randomword)
+def correctguess(guessinput):
+    pass
+    #
 
-################################################################
+############# Gather Random Word ###########################
+
+with open("/usr/share/dict/words") as wholedoc:
+    wordlist = wholedoc.read().lower().splitlines()
+    randomword = random.choice(wordlist)
+    list(randomword)
+    blankspace = "_ " * len(randomword)
+print(blankspace + randomword) ########### DELTE THIS WHEN COMPLETE ##############
+
+
+########## TERMS ############
 
 guesscounter = 8
 
-while guesscounter > 0:
+while guesscounter >= 0:
     guessinput = input("Guess a letter! ")
-    answer = "YOU WIN!"
-    output = f"You have {guesscounter} guesses remaining"
-    guessedletter = wholegame(guesscounter, answer)
-    print(output)
+    if guessinput in list(randomword):
+        output = f"You have {guesscounter} guesses remaining"
+        print(output)

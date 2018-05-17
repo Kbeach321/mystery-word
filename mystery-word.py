@@ -7,7 +7,6 @@ def wholegame(guesscounter, statement):
     letter = guessinput
     if letterguesser(letter) is True:
         statement = correctguess(guessinput)
-        guesscounter += 0
     else:
         statement = incorrectguess(guessinput)
         guesscounter -= 1
@@ -35,7 +34,7 @@ with open("/usr/share/dict/words") as wholedoc:
     randomword = random.choice(wordlist)
     list(randomword)
     blankspace = "_ " * len(randomword)
-print(blankspace + randomword) ########### DELTE THIS WHEN COMPLETE ##############
+print(randomword) ########### DELTE THIS WHEN COMPLETE ##############
 
 
 ########## TERMS ############
@@ -44,6 +43,12 @@ guesscounter = 8
 
 while guesscounter >= 0:
     guessinput = input("Guess a letter! ")
-    if guessinput in list(randomword):
-        output = f"You have {guesscounter} guesses remaining"
-        print(output)
+    if guessinput in randomword:
+        guesscounter += 0
+        print("Your word has this many spaces: " + blankspace)
+
+    else:
+        print("Nope, guess again")
+        guesscounter -= 1
+    output = f"You have {guesscounter} guesses remaining"
+    print(output)

@@ -1,5 +1,5 @@
 # Mystery-word application #
-# OBJECTIVES:  1. select a word from external file
+# OBJECTIVES:
 # 2. Number of letters # 3. 1 letter per round "Lives"
 # 4. Display progress on word # 5. 8 guesses [guess count displayed]
 
@@ -10,17 +10,29 @@ with open("/usr/share/dict/words") as wholedoc:
     randomword = random.choice(wordlist)
 print(randomword)
 
-def correctguess(letter):
-    return f"{letter} is correct"
+def wholegame(guesscounter, answer):
+    if correctguess():
+        statement = "That letter is correct "
+        guesscounter += 0
+    else:
+        statement = "That letter is incorrect "
+        guesscounter -= 1
+    return statement , guesscounter
 
-def incorrectguess(letter):
-    return f"{letter} is incorrect"
+#print(f"Your word contains this many letters" randomword)
+
+#def correctguess(letter):
+#    return f"{letter} is correct"
+
+#def incorrectguess(letter):
+#    return f"{letter} is incorrect"
 
 ################################################################
 
 guesscounter = 8
 
-#while guesscounter > 0:
-#    print(guesscounter)
-#    letterguess = input("Guess a letter! ")
-#    print(computerword)
+while guesscounter > 0:
+    guessinput = input("Guess a letter! ")
+    output = f"You have {guesscounter} guesses remaining"
+
+    print(output)

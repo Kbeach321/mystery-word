@@ -3,25 +3,12 @@
 ###############################
 import random
 #############################
-"""
-def wholegame(guesscounter, statement):
-    letter = guessinput
-    if letterguesser(letter) is True:
-        statement = correctguess(guessinput)
-    else:
-        statement = incorrectguess(guessinput)
-        guesscounter -= 1
-    return guesscounter, statement
 
-def letterguesser(letter):
+def letterguesser(guessinput):
     if guessinput in randomword:
         return True
     else:
         return False
-"""
-def incorrectguess(guessinput):
-    pass
-    #
 
 def correctguess(guessinput):
     pass
@@ -29,25 +16,26 @@ def correctguess(guessinput):
 ############# Gather Random Word ###########################
 
 with open("/usr/share/dict/words") as wholedoc:
-    wordlist = wholedoc.read().lower().splitlines()
-    randomword = random.choice(wordlist)
-    list(randomword)
+    wordbank = wholedoc.read().lower().splitlines()
+    randomword = random.choice(wordbank)
     blankspace = "_ " * len(randomword)
-print(randomword) ########### DELTE THIS WHEN COMPLETE ##############
+print(blankspace) ########### DELTE THIS WHEN COMPLETE ##############
 
 ########## TERMS ############
 
 guesscounter = 8
+updatedguess = []
 
-while guesscounter >= 0:
-    guessinput = input("Guess a letter! ")
-    output = f"You have {guesscounter} guesses remaining"
-    if guessinput in randomword:
-        guesscounter += 0
-        print("Your word has this many spaces: " + blankspace)
-
+while guesscounter > 0:
+    guessinput = input("Guess a letter! ").lower()
+    updatedguess += guessinput
+    if letterguesser(guessinput) is True:
+        for letter in randomword:
+            if letter in updatedguess:
+                print(letter + " ", end="")
+            else:
+                print("_ ", end="")
+        print(guesscounter , "Guesses Remain")
     else:
         guesscounter -= 1
-        print("Nope, guess again")
-
-    print(output)
+        print(guesscounter , "Guesses Remain")

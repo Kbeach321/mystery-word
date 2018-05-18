@@ -1,8 +1,12 @@
 # Mystery-word application #
-# OBJECTIVES: # 3. 1 letter per round "Lives" # 4. Display progress on word
-###############################
+
+# TO DO LIST: break when you win.
+
+####################### IMPORTS ###########################
+
 import random
-#############################
+
+###################### FUNCTIONS #################################
 
 def letterguesser(guessinput):
     if guessinput in randomword:
@@ -10,19 +14,24 @@ def letterguesser(guessinput):
     else:
         return False
 
-def correctguess(guessinput):
-    pass
+def usedletters(updatedguess):
+    if guessinput in updatedguess:
+        print("Please guess a new letter")
+    return usedletters
 
-############# Gather Random Word ###########################
+def winning(updatedguess):
+    if
+
+################# Gather Random Word ###########################
 
 with open("/usr/share/dict/words") as wholedoc:
     wordbank = wholedoc.read().lower().splitlines()
     randomword = random.choice(wordbank)
     blankspace = "_ " * len(randomword)
-print(blankspace) ########### DELTE THIS WHEN COMPLETE ##############
+print(randomword) ########### DELTE THIS WHEN COMPLETE ##############
+print(blankspace)
 
-########## TERMS ############
-
+##################### TERMS #############################
 guesscounter = 8
 updatedguess = []
 
@@ -35,7 +44,12 @@ while guesscounter > 0:
                 print(letter + " ", end="")
             else:
                 print("_ ", end="")
-        print(guesscounter , "Guesses Remain")
+        print()
     else:
         guesscounter -= 1
+        print("Incorrect, try again! ")
         print(guesscounter , "Guesses Remain")
+    if guesscounter == 0:
+        print("GAME OVER")
+    if updatedguess == randomword:
+        print("YOU WIN!")

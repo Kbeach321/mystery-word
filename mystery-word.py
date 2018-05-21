@@ -14,13 +14,7 @@ def letterguesser(guessinput):
     else:
         return False
 
-def usedletters(updatedguess):
-    if guessinput in updatedguess:
-        print("Please guess a new letter")
-    return usedletters
 
-def winning(updatedguess):
-    if
 
 ################# Gather Random Word ###########################
 
@@ -28,12 +22,13 @@ with open("/usr/share/dict/words") as wholedoc:
     wordbank = wholedoc.read().lower().splitlines()
     randomword = random.choice(wordbank)
     blankspace = "_ " * len(randomword)
-print(randomword) ########### DELTE THIS WHEN COMPLETE ##############
 print(blankspace)
 
 ##################### TERMS #############################
 guesscounter = 8
 updatedguess = []
+
+
 
 while guesscounter > 0:
     guessinput = input("Guess a letter! ").lower()
@@ -51,5 +46,3 @@ while guesscounter > 0:
         print(guesscounter , "Guesses Remain")
     if guesscounter == 0:
         print("GAME OVER")
-    if updatedguess == randomword:
-        print("YOU WIN!")
